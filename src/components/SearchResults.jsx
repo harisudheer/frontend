@@ -24,7 +24,7 @@ const SearchResults = ({ searchQuery, filteredResults, themeColor, setShowResult
             borderRadius: 2,
             color: "primary.main",
             "&:hover": {
-              bgcolor: "primary.main" + "10"
+              bgcolor: "rgba(25, 118, 210, 0.1)",
             }
           }}
         >

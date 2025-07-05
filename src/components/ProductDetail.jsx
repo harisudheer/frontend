@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, CircularProgress, Card, CardMedia, Rating, Button, IconButton, Divider, Chip, Breadcrumbs, Link, Snackbar, Alert } from '@mui/material';
+import {
+  Box, Typography, CircularProgress, Card, CardMedia, Rating, Button, IconButton,
+  Divider, Chip, Breadcrumbs, Link, Snackbar, Alert
+} from '@mui/material';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
-import { Add, Remove, ShoppingCart, FavoriteBorder, Favorite, ArrowBack, Share } from '@mui/icons-material';
+import {
+  Add, Remove, ShoppingCart, FavoriteBorder, Favorite, ArrowBack, Share
+} from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ProductDetail = () => {
@@ -19,24 +24,6 @@ const ProductDetail = () => {
   const showSnackbar = (message) => {
     setSnackbarMessage(message);
     setSnackbarOpen(true);
-  };
-
-  const fetchProduct = async () => {
-    setLoading(true);
-    setImageLoaded(false);
-    try {
-      const res = await fetch(`https://fakestoreapi.com/products/${id}`);
-      const data = await res.json();
-      setProduct(data);
-
-      if (data.category) {
-        fetchRelatedProducts(data.category, data.id);
-      }
-    } catch (err) {
-      console.error('Error fetching product:', err);
-      showSnackbar('Failed to load product details');
-    }
-    setLoading(false);
   };
 
   const fetchRelatedProducts = async (category, currentId) => {
@@ -78,8 +65,25 @@ const ProductDetail = () => {
   };
 
   useEffect(() => {
+    const fetchProduct = async () => {
+      setLoading(true);
+      setImageLoaded(false);
+      try {
+        const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+        const data = await res.json();
+        setProduct(data);
+        if (data.category) {
+          fetchRelatedProducts(data.category, data.id);
+        }
+      } catch (err) {
+        console.error('Error fetching product:', err);
+        showSnackbar('Failed to load product details');
+      }
+      setLoading(false);
+    };
+
     fetchProduct();
-    setQuantity(0); 
+    setQuantity(0);
     window.scrollTo(0, 0);
   }, [id]);
 
@@ -115,9 +119,12 @@ const ProductDetail = () => {
             transition={{ duration: 0.4 }}
           >
             <Box p={{ xs: 2, sm: 4 }}>
-              <Button startIcon={<ArrowBack />} onClick={() => navigate(-1)} sx={{ mb: 2 }}> Back </Button>
+              <Button startIcon={<ArrowBack />} onClick={() => navigate(-1)} sx={{ mb: 2 }}>
+                Back
+              </Button>
 
               <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap={5} mb={6}>
+                {/* Product Image */}
                 <Box sx={{ flex: 1, maxWidth: 400, position: 'relative' }}>
                   <Card sx={{ p: 2, height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {!imageLoaded && (
@@ -127,7 +134,8 @@ const ProductDetail = () => {
                     )}
                     <CardMedia
                       component="img"
-                      image={product.image} alt={product.title}
+                      image={product.image}
+                      alt={product.title}
                       sx={{ height: '100%', width: '100%', objectFit: 'contain', display: imageLoaded ? 'block' : 'none' }}
                       onLoad={() => setImageLoaded(true)}
                     />
@@ -143,6 +151,7 @@ const ProductDetail = () => {
                   </Box>
                 </Box>
 
+                {/* Product Info */}
                 <Box flex={2}>
                   <Typography variant="h4" fontWeight={600} gutterBottom>
                     {product.title}
@@ -192,6 +201,7 @@ const ProductDetail = () => {
                 </Box>
               </Box>
 
+              {/* Related Products */}
               {relatedProducts.length > 0 && (
                 <Box mt={8} mb={6}>
                   <Typography variant="h5" fontWeight="bold" mb={4}>
