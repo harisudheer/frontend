@@ -97,7 +97,7 @@ const ProductDetail = () => {
           <Link component={RouterLink} to="/" color="inherit">Home</Link>
           <Link
             component={RouterLink}
-            to={`/category/${encodeURIComponent(product.category)}`} // fix broken route
+            to={`/category/${encodeURIComponent(product.category)}`} 
             color="inherit"
           >
             {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
@@ -245,7 +245,7 @@ const ProductDetail = () => {
         open={snackbarOpen}
         autoHideDuration={3000}
         onClose={() => setSnackbarOpen(false)}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
         <Alert onClose={() => setSnackbarOpen(false)} severity="success">
           {snackbarMessage}
