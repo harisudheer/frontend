@@ -5,6 +5,9 @@ import HomePage from "./components/HomePage";
 import ProductDetail from "./components/ProductDetail";
 import Login from "./components/Login";
 import Cart from "./components/Cart";
+import PaymentPage from "./components/PaymentPage";
+import PaymentSuccess from "./components/PaymentSuccess";
+import PaymentFailed from "./components/PaymentFailed";
 import Footer from "./components/Footer";
 import axios from "axios";
 
@@ -77,6 +80,9 @@ const AppContent = () => {
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/cart" element={ isLoggedIn ? ( <Cart updateCartCount={setCartCount} /> ) : ( <Login onLogin={handleLogin} /> ) } />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/payment-failed" element={<PaymentFailed />} />
       </Routes>
 
       {!shouldHideHeaderFooter && (

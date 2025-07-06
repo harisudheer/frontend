@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Box, Typography, CircularProgress, Divider, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Cart = ({ updateCartCount }) => {
   const [cartProducts, setCartProducts] = useState([]);
   const [loadingCart, setLoadingCart] = useState(true);
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?.id;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -117,8 +119,19 @@ const Cart = ({ updateCartCount }) => {
       )}
 
       <Box mt={3} textAlign="right">
-        <Button variant="contained" color="primary" disabled>
-          Proceed to Checkout
+       <Button
+         variant="contained"
+         color="primary"
+         onClick={() => {
+           const totalAmount = cartProducts.reduce(
+             (sum, item) => sum + item.price * item.quantity,
+             0
+            );
+          localStorage.setItem("cartTotal", totalAmount.toFixed(2));
+          navigate("/payment");
+         }}
+        >
+         Proceed to Checkout
         </Button>
       </Box>
     </Box>

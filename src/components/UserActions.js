@@ -59,7 +59,7 @@ const UserActions = ({
           >
             <Avatar
               sx={{
-                width: isMobile ? 28 : 34,
+                width: isMobile ? 23 : 34,
                 height: isMobile ? 28 : 34,
                 background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
                 fontSize: isMobile ? "0.775rem" : "0.9rem"

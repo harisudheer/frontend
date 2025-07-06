@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AppBar, Toolbar, useTheme, useMediaQuery } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useLocation } from "react-router-dom"; 
 import BrandLogo from "./BrandLogo";
 import SearchBar from "./SearchBar";
 import UserActions from "./UserActions";
@@ -20,6 +19,7 @@ const Navbar = ({ isLoggedIn, onLogout, onCategoryChange, cartCount = 0 }) => {
 
   const dropdownRef = useRef();
   const navigate = useNavigate();
+  const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const isTablet = useMediaQuery(theme.breakpoints.between('md', 'lg'));
@@ -31,6 +31,11 @@ const Navbar = ({ isLoggedIn, onLogout, onCategoryChange, cartCount = 0 }) => {
     { name: "men's clothing", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe4fi2psm7ivrmbeKJjHsAqQc1sNMf7mpQLA&s" },
     { name: "women's clothing", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBiLmWz0MDRTYwIiPOE2aXFiHUZaAPQif14A&s" },
   ];
+
+  const hideTabsRoutes = ["/cart", "/payment"];
+  const hideCategoryTabs =
+    hideTabsRoutes.includes(location.pathname) ||
+    location.pathname.startsWith("/product/");
 
   useEffect(() => {
     document.body.style.backgroundColor =
@@ -104,13 +109,14 @@ const Navbar = ({ isLoggedIn, onLogout, onCategoryChange, cartCount = 0 }) => {
   return (
     <>
       <AppBar
-        position="static"
+        position="sticky"
         elevation={0}
         sx={{
           bgcolor: themeColor === "dark" ? "#1a1a1a" : "#ffffff",
           color: themeColor === "dark" ? "#ffffff" : "#000000",
           borderBottom: `1px solid ${themeColor === "dark" ? "#333" : "#e0e0e0"}`,
-          boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+          zIndex: 1100,
         }}
       >
         <Toolbar
@@ -143,7 +149,7 @@ const Navbar = ({ isLoggedIn, onLogout, onCategoryChange, cartCount = 0 }) => {
         </Toolbar>
       </AppBar>
 
-      {!showResults && (
+      {!showResults && !hideCategoryTabs && (
         <CategoryTabs
           categories={categories}
           onCategoryChange={onCategoryChange}
