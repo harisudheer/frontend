@@ -119,7 +119,7 @@ const Navbar = ({ isLoggedIn, onLogout, onCategoryChange, cartCount = 0 }) => {
           borderBottom: `1px solid ${themeColor === "dark" ? "#333" : "#e0e0e0"}`,
           boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
           zIndex: 1100,
-          width: '102%',
+          width: '100%',
           overflowX: 'hidden',
           boxSizing: 'border-box',
         }}

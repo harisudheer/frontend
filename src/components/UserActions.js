@@ -34,10 +34,10 @@ const UserActions = ({
           sx={{
             "& .MuiBadge-badge": {
               fontSize: "0.65rem",
-              height: "18px",
-              minWidth: "18px",
-              top: 5,
-              right: 5,
+              height: "14px",
+              minWidth: "14px",
+              top: 4,
+              right: 4,
               border: `1px solid ${themeColor === "dark" ? "#1a1a1a" : "#ffffff"}`,
             }
           }}

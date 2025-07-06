@@ -6,7 +6,7 @@ const SearchBar = ({ searchQuery, setSearchQuery, handleSearch, themeColor, isMo
   const theme = useTheme();
 
   const getSearchBarWidth = () => {
-    if (isMobile) return '140px';
+    if (isMobile) return '120px';
     if (isTablet) return '200px';
     return '300px';
   };
