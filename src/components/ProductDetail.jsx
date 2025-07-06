@@ -92,7 +92,6 @@ const ProductDetail = () => {
 
   return (
     <Box>
-      {/* Breadcrumbs */}
       <Box px={{ xs: 2, md: 6 }} py={2}>
         <Breadcrumbs aria-label="breadcrumb">
           <Link component={RouterLink} to="/" color="inherit">Home</Link>
@@ -107,7 +106,6 @@ const ProductDetail = () => {
         </Breadcrumbs>
       </Box>
 
-      {/* Page Animation */}
       <AnimatePresence mode="wait">
         {!loading && product && (
           <motion.div
@@ -118,7 +116,6 @@ const ProductDetail = () => {
             transition={{ duration: 0.4 }}
           >
             <Box p={{ xs: 2, sm: 4 }}>
-              {/* Back Button */}
               <Button
                 startIcon={<ArrowBack />}
                 onClick={() => window.history.length > 1 ? navigate(-1) : navigate("/")}
@@ -126,8 +123,6 @@ const ProductDetail = () => {
               >
                 Back
               </Button>
-
-              {/* Product View */}
               <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap={5} mb={6}>
                 <Box
                   sx={{
@@ -157,7 +152,6 @@ const ProductDetail = () => {
                   </Box>
                 </Box>
 
-                {/* Product Info */}
                 <Box flex={2} sx={{ width: '100%' }}>
                   <Typography variant="h4" fontWeight={600} gutterBottom>{product.title}</Typography>
                   <Box display="flex" alignItems="center" gap={1} mb={2}>
@@ -189,7 +183,6 @@ const ProductDetail = () => {
                 </Box>
               </Box>
 
-              {/* Related Products */}
               {relatedProducts.length > 0 && (
                 <Box mt={8}>
                   <Typography variant="h5" fontWeight="bold" mb={4}>Customers who viewed this also viewed</Typography>
