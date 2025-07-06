@@ -84,7 +84,6 @@ const HomePage = ({ selectedCategory }) => {
 
   const categories = [...new Set(products.map(item => item.category))];
   const filteredCategories = selectedCategory === "Products" || selectedCategory === "all" ? categories : categories.filter(cat => cat === selectedCategory);
-
   const getCategoryTitle = cat => cat.charAt(0).toUpperCase() + cat.slice(1);
   const getProductsByCategory = cat => products.filter(item => item.category === cat);
 
@@ -99,7 +98,7 @@ const HomePage = ({ selectedCategory }) => {
   return (
     <Box px={2} py={1}>
       {filteredCategories.map((category) => (
-        <Box key={category} mb={5}>
+        <Box key={category} mb={3}>
           <Typography variant="h6" fontWeight={600} mb={2}>
             {getCategoryTitle(category)}
           </Typography>
@@ -108,6 +107,7 @@ const HomePage = ({ selectedCategory }) => {
             sx={{
               display: "flex",
               overflowX: "auto",
+              width: '100%',
               gap: 1,
               pb: 1,
               "&::-webkit-scrollbar": { display: "none" },
