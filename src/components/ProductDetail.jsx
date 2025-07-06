@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Box, Typography, CircularProgress, Card, CardMedia, Rating, Button, IconButton,
-  Divider, Chip, Breadcrumbs, Link, Snackbar, Alert
-} from '@mui/material';
+import { Box, Typography, CircularProgress, Card, CardMedia, Rating, Button, IconButton, Divider, Chip, Breadcrumbs, Link, Snackbar, Alert } from '@mui/material';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
-import {
-  Add, Remove, ShoppingCart, FavoriteBorder, Favorite, ArrowBack, Share
-} from '@mui/icons-material';
+import { Add, Remove, ShoppingCart, FavoriteBorder, Favorite, ArrowBack, Share } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ProductDetail = () => {
@@ -151,7 +146,6 @@ const ProductDetail = () => {
                   </Box>
                 </Box>
 
-                {/* Product Info */}
                 <Box flex={2}>
                   <Typography variant="h4" fontWeight={600} gutterBottom>
                     {product.title}
@@ -201,7 +195,6 @@ const ProductDetail = () => {
                 </Box>
               </Box>
 
-              {/* Related Products */}
               {relatedProducts.length > 0 && (
                 <Box mt={8} mb={6}>
                   <Typography variant="h5" fontWeight="bold" mb={4}>

@@ -29,7 +29,6 @@ const PaymentPage = () => {
     if (storedTotal) {
       setTotalAmount(parseFloat(storedTotal));
     } else {
-      // If no total, send back to cart
       navigate("/cart");
     }
   }, [navigate]);

@@ -9,7 +9,7 @@ const PaymentSuccess = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/");
-    }, 3000); // auto-redirect to home after 3 seconds
+    }, 3000);
     return () => clearTimeout(timer);
   }, [navigate]);
 
