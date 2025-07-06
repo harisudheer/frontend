@@ -52,7 +52,6 @@ const SearchResults = ({ searchQuery, filteredResults, themeColor, setShowResult
           {filteredResults.map((product) => (
             <Box
               key={product.id}
-              onClick={() => navigate(`/product/${product.id}`)}
               sx={{
                 border: `1px solid ${themeColor === "dark" ? "#404040" : "#e0e0e0"}`,
                 borderRadius: 3,
@@ -60,10 +59,8 @@ const SearchResults = ({ searchQuery, filteredResults, themeColor, setShowResult
                 textAlign: "center",
                 backgroundColor: themeColor === "dark" ? "#2a2a2a" : "#ffffff",
                 boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-                cursor: "pointer",
                 transition: "all 0.3s ease",
                 "&:hover": {
-                  transform: "translateY(-5px)",
                   boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
                   borderColor: "primary.main"
                 },
@@ -108,6 +105,21 @@ const SearchResults = ({ searchQuery, filteredResults, themeColor, setShowResult
               >
                 ${product.price}
               </Typography>
+
+              <Button
+                variant="outlined"
+                color="primary"
+                size="small"
+                fullWidth
+                sx={{ mt: 1, borderRadius: 2 }}
+                onClick={() => {
+                  setShowResults(false);
+                  setSearchQuery("");
+                  navigate(`/product/${product.id}`);
+                }}
+              >
+                View Details
+              </Button>
             </Box>
           ))}
         </Box>
