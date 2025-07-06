@@ -112,7 +112,9 @@ const Navbar = ({ isLoggedIn, onLogout, onCategoryChange, cartCount = 0 }) => {
         position="sticky"
         elevation={0}
         sx={{
-          bgcolor: themeColor === "dark" ? "#1a1a1a" : "#ffffff",
+          bgcolor: themeColor === "dark"
+          ? "linear-gradient(90deg, #0f2027, #203a43, #2c5364)"
+          : "linear-gradient(90deg, #ffffff, #f7f7f7)",
           color: themeColor === "dark" ? "#ffffff" : "#000000",
           borderBottom: `1px solid ${themeColor === "dark" ? "#333" : "#e0e0e0"}`,
           boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
